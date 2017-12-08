@@ -1,13 +1,30 @@
 import './app.scss';
+import 'animate.css';
 import alloyfinger from 'alloyfinger'
 import { setTimeout } from 'timers';
 console.log(alloyfinger)
+$(function(){
+    $('#container').show()
+})
 
 class ScrollPage {
     constructor() {
+        this.AnimateDelay = 200;
         this.transY = 0;
         this.touchInit()
         this.timer = null;
+        this.index = 0;
+        this.length = $('.slide').length;
+        this.init()
+    }
+    init() {
+        location.href = location.origin + '#/' + this.index
+        let ele = $(".wrap0").find('[data-animate]');
+        console.log(ele.length)
+        ele.each((i, element) => {
+            $(element).addClass($(element).data('animate'))
+        })
+
     }
     scrollHandle() {
         const _this = this;
@@ -44,10 +61,10 @@ class ScrollPage {
             pressMove: function (evt) {
                 //evt.deltaX和evt.deltaY代表在屏幕上移动的距离
                 // console.log(evt.deltaX);
-                console.log(evt);
-                console.log(_this.transY);
-                _this.transY += evt.deltaY;
-                _this.scrollHandle()
+                // console.log(evt);
+                // console.log(_this.transY);
+                // _this.transY += evt.deltaY;
+                // _this.scrollHandle()
 
             },
             tap: function (evt) {
@@ -64,8 +81,44 @@ class ScrollPage {
                 //evt.direction代表滑动的方向
                 console.log("swipe" + evt.direction);
                 if (evt.direction == "Up") {
+                    if (_this.index < 2) {
+                        _this.index++
+                        let nowHeight = (_this.index) * $(window).height()
+                        $('#container').css({ transform: 'translate(0,-' + nowHeight + 'px)' })
+                        location.href = location.origin + '#/' + _this.index
+                        let ele = $(".wrap" + _this.index).find('[data-animate]');
+                        setTimeout(() => {
+                            ele.each((i, element) => {
+                                $(element).addClass($(element).data('animate'))
+                            })
+                        }, _this.AnimateDelay)
+                        let eleold = $(".wrap" + (_this.index - 1)).find('[data-animate]')
+                        eleold.each((i, element) => {
+                            $(element).removeClass($(element).data('animate'))
+
+                        })
+                    }
 
                 } else if (evt.direction == "Down") {
+                    if (_this.index > 0) {
+                        _this.index--
+                        let nowHeight = (_this.index) * $(window).height()
+                        $('#container').css({ transform: 'translate(0,-' + nowHeight + 'px)' })
+                        location.href = location.origin + '#/' + _this.index
+                        console.log(_this.index)
+                        let ele = $(".wrap" + _this.index).find('[data-animate]');
+                        setTimeout(() => {
+                            ele.each((i, element) => {
+                                $(element).addClass($(element).data('animate'))
+
+                            })
+                        }, _this.AnimateDelay)
+                        let eleold = $(".wrap" + (_this.index + 1)).find('[data-animate]')
+                        eleold.each((i, element) => {
+                            $(element).removeClass($(element).data('animate'))
+                        })
+                    }
+
 
                 }
             },

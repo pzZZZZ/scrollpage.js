@@ -1,14 +1,43 @@
-*{
+* {
     margin: 0;
     padding: 0;
 }
-body,html{
+
+body,
+html {
     height: 100%;
     overflow: hidden;
 }
-#container{
+
+#container {
+    
+    height: 100%; // overflow: hidden;
+    // background: lightblue;
+    transition: all 0.5s ease-out;
+}
+
+.slide {
+    color: #fff;
+    font-size: 20px;
+    text-align: center;
+}
+
+.wrap0 {
     height: 100%;
-    overflow: hidden;
-    background: lightblue;
-    transition: all 0.05s ease-in-out;
+    background: url(https://tse3-mm.cn.bing.net/th?id=OIP.J20Ln8g6CvRacLjkkTeTlgEsC7&w=300&h=184&c=7&qlt=90&o=4&pid=1.7) no-repeat;
+    background-size: cover;
+}
+
+.wrap2 {
+    height: 100%;
+    background: url(https://tse3-mm.cn.bing.net/th?id=OIP.njE_bddaAY2psT8531d8TwFNC7&w=300&h=168&c=7&qlt=90&o=4&pid=1.7);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.wrap1 {
+    height: 100%;
+    background: url(https://tse3-mm.cn.bing.net/th?id=OIP.v4x2L_R6-9FHLhvaKPlt1wDZEf&w=148&h=184&c=7&qlt=90&o=4&pid=1.7);
+    background-repeat: no-repeat;
+    background-size: cover;
 }
