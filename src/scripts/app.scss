@@ -1,0 +1,14 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body,html{
+    height: 100%;
+    overflow: hidden;
+}
+#container{
+    height: 100%;
+    overflow: hidden;
+    background: lightblue;
+    transition: all 0.05s ease-in-out;
+}
